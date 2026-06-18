@@ -1,52 +1,170 @@
 # Prompt Log
 
-This file records the prompts and implementation decisions used to generate the code for the Ocean Across frontend developer assessment.
+Below is the prompt log used while building the Ocean Across frontend assessment. The prompts are grouped in the same order the features were planned and implemented.
 
-## User Prompt
+## 1. Project Setup
 
-> This email pertains to your application for the FrontEnd Developer position at Ocean Across. As part of the selection process, please find the attached assignment, which we request you complete and submit within the next 48 hours.
->
-> Kindly include the complete prompt log used to generate the code.
->
-> Please do not hesitate to contact us if you have any questions regarding this matter.
->
-> this is the main content
->
-> and i have attached the assessement file
->
-> please add the code by following all the rules in the pdf and add the code into ocean cross folder
+Create a new React frontend project for a grocery delivery web application using Vite, TypeScript, Tailwind CSS, React Router, and Zustand.
 
-## Assessment Requirements Extracted From PDF
+Keep TypeScript strict, avoid `any`, and do not use Redux, MobX, Context API for global state, or any UI component library.
 
-- Build a grocery delivery web application from the provided mobile-first Figma reference.
-- Use React, TypeScript in strict mode, Tailwind CSS, Zustand, and React Router.
-- Do not use Redux, MobX, Context API for global state, UI component libraries, or inline CSS.
-- Implement authentication and onboarding screens: splash, welcome, login, sign up, OTP verification, and location selection.
-- Implement main app screens: home, category product listing, product details, search, filters, cart, and favorites.
-- Implement checkout screens: order success and order failure.
-- Use separate Zustand stores.
-- Use mock JSON-style product and category data.
-- Simulate API calls using `setTimeout`.
-- Design desktop layouts with a `max-w-7xl` container, 4-column product grid, category/filter sidebar, and sticky checkout summary.
-- Include TypeScript interfaces for `Product`, `CartItem`, and `User`.
-- Include enums for order status and product categories.
-- Add bonus UX where practical: skeleton loaders, empty states, error states, debounced search, keyboard accessibility, and smooth transitions.
+Set up the basic folder structure with `src`, routing, styles, shared types, mock data, stores, and utility files.
 
-## Figma Access Note
+## 2. App Theme and Layout
 
-The public Figma URL from the PDF was fetched with a browser-like request. It exposed the file title, "Frontend Grocery App Test", and page metadata, but the full canvas details were not available through the non-interactive environment. The implementation therefore follows the PDF requirements closely and mirrors a mobile-first grocery app visual language with green primary actions, rounded product cards, bottom mobile navigation, image-led product surfaces, and responsive desktop layouts.
+Design the app as a mobile-first grocery delivery experience inspired by modern grocery apps.
 
-## Generation Steps
+Use green as the main brand color, white cards, soft backgrounds, product images, rounded grocery cards, and clear call-to-action buttons.
 
-1. Extracted the assessment text from `/Users/apple/Downloads/Ocean Across FE Dev Assessment.pdf`.
-2. Inspected `/Users/apple/Desktop/OceanCross`, which was empty.
-3. Created a Vite React project directly in the OceanCross folder.
-4. Added strict TypeScript, Tailwind CSS, React Router, Zustand, and typed mock catalog data.
-5. Created separate Zustand stores for authentication, products/favorites/filters, and cart/checkout state.
-6. Implemented all required screens and flows in `src/App.tsx`.
-7. Added responsive mobile and desktop layouts using Tailwind utilities.
-8. Added this prompt log for assignment submission.
+Make sure the desktop version does not look like a stretched mobile screen. Use a `max-w-7xl` layout, wider content areas, desktop grids, and side panels where needed.
 
-## Main Implementation Prompt Used Internally
+## 3. TypeScript Models
 
-Build a complete mobile-first grocery delivery React app in the empty OceanCross folder using Vite, TypeScript strict mode, Tailwind CSS, Zustand, and React Router. Implement all PDF-required screens: splash, welcome, login, sign up, OTP verification, location selection, home, category listing, product details, search, filters, cart, favorites, order success, and order failure. Use mock product/category data, separate Zustand stores, simulated loading with `setTimeout`, debounced search, skeleton loaders, empty states, keyboard-friendly controls, mobile bottom navigation, desktop `max-w-7xl` layout, 4-column product grids, filter sidebar, and sticky cart summary. Avoid UI component libraries, inline CSS, Redux, MobX, and Context API.
+Create proper TypeScript interfaces for:
+
+- Product
+- CartItem
+- User
+- Category
+
+Create enums for:
+
+- Product categories
+- Order status
+
+Use these types across stores, components, and mock data.
+
+## 4. Mock Grocery Data
+
+Create mock product and category data for the grocery app.
+
+Add categories such as fruits, vegetables, dairy, bakery, meat, and beverages.
+
+Each product should include name, category, price, unit, image, rating, origin, description, nutrition details, tags, and stock status.
+
+Use static image URLs and keep the data realistic enough for product listing, search, filters, cart, favorites, and product detail pages.
+
+## 5. Zustand Stores
+
+Create separate Zustand stores instead of putting all global state in one place.
+
+Create an auth store for user details, onboarding, login, signup, OTP verification, and location selection.
+
+Create a product store for product loading, favorites, search term, selected category, max price, stock filter, and clearing filters.
+
+Create a cart store for cart items, add/remove/increase/decrease quantity, clearing cart, checkout status, and simulated checkout.
+
+Simulate product loading and checkout with `setTimeout`.
+
+## 6. Authentication Flow
+
+Build the authentication and onboarding flow from the assignment.
+
+Create these screens:
+
+- Splash screen
+- Welcome / onboarding screen
+- Login screen
+- Sign up screen
+- OTP verification screen
+- Location selection screen
+
+Use the OTP code `1234` for demo verification and redirect users into the main app after location selection.
+
+## 7. Main App Shell
+
+Create the main application shell with a sticky top bar and mobile bottom navigation.
+
+The top bar should show the app logo, selected location, and cart shortcut.
+
+The mobile bottom navigation should include home, search, favorites, cart, and account/location.
+
+Use React Router for all screen navigation.
+
+## 8. Home Screen
+
+Build the grocery home screen.
+
+Add a delivery hero section, shop-by-category section, and best-selling products section.
+
+On mobile, the layout should feel close to a grocery app with cards and bottom navigation.
+
+On desktop, use a wider responsive layout with larger hero content and product grids.
+
+## 9. Category and Product Listing
+
+Create category-based product listing pages.
+
+When a user opens a category, show the selected category details and only products from that category.
+
+For desktop, include a category/filter sidebar.
+
+For product lists, use a responsive grid with at least four columns on large screens.
+
+## 10. Product Details
+
+Create a product details screen.
+
+Show product image, name, category, unit, rating, origin, description, nutrition tags, favorite button, price, stock state, and add-to-cart button.
+
+Make the page responsive with image and product details side by side on desktop.
+
+## 11. Search and Filters
+
+Create a search screen with debounced search.
+
+Search should match product names and tags.
+
+Add filters for category, max price, and in-stock-only products.
+
+Use a sidebar filter panel on desktop and a filter sheet/modal on mobile.
+
+Add empty states when no products match the search or filters.
+
+## 12. Favorites
+
+Create a favorites screen.
+
+Allow users to favorite and unfavorite products from product cards and product details.
+
+Show saved products on the favorites page.
+
+If there are no favorites, show a clean empty state with a button to browse products.
+
+## 13. Cart
+
+Create the cart screen.
+
+Show each cart item with product image, name, unit, quantity controls, remove button, and line total.
+
+Add subtotal, delivery fee, and total.
+
+On desktop, keep the order summary sticky while the cart list scrolls.
+
+## 14. Checkout States
+
+Create order success and order failure screens.
+
+The cart should simulate checkout using a delay.
+
+Add a normal checkout button that leads to success and a demo failure button that leads to the failure state.
+
+Clear the cart after a successful order.
+
+## 15. UX Improvements
+
+Add skeleton loaders while product data is loading.
+
+Add empty states for cart, favorites, and search results.
+
+Use accessible buttons, labels, focus states, and keyboard-friendly form controls.
+
+Add smooth hover and transition states using Tailwind utilities.
+
+## 16. Documentation
+
+Add a README file explaining the project, stack, implemented screens, local setup command, build command, and notes.
+
+Add this prompt log file for submission as required by the assignment.
+
+Mention that the full app uses mock data and no backend.
