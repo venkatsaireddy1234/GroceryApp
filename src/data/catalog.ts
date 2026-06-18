@@ -4,7 +4,7 @@ export const categories: Category[] = [
   {
     id: ProductCategory.Fruits,
     label: "Fresh Fruits",
-    image: "https://images.unsplash.com/photo-1619566636858-adf3ef4640b2?auto=format&fit=crop&w=500&q=80",
+    image: "https://images.unsplash.com/photo-1573246123716-6b1782bfc499?auto=format&fit=crop&w=500&q=80",
     color: "bg-emerald-50 border-emerald-100",
   },
   {
